@@ -42,6 +42,7 @@ def t_Id(t):
 		t.type = t.value
 
 	return t
+
 #nueva linea
 def t_nuevalinea(t):
 	r'\n+'
@@ -51,14 +52,16 @@ def t_nuevalinea(t):
 def t_Comentario(t):
 	r'\#.*'
 	pass
+
 #numero
 def t_Numero(t):
 	r'\d+'
 	t.value = int(t.value)
 	return t
+
 #para el error
 def t_error(t):
-	print ("caracter ilegal '%s'" % t.value[0])
+	print (chr(27)+"[1;35m"+"Caracter No Reconocido '%s'" % t.value[0])
 	t.lexer.skip(1)
 
 #busca y seleciona el fichero
@@ -76,13 +79,13 @@ def buscarFicheros(directorio):
 		cont = cont+1
 
 	while respuesta == False:
-		numArchivo = input('Numero del test: ')
+		numArchivo = input(chr(27)+"[1;36m"+'Numero del test: ')
 		for file in files:
 			if file == files[int(numArchivo)-1]:
 				respuesta = True
 				break
 
-	print ("Has escogido \"%s\" \n" %files[int(numArchivo)-1])
+	print (chr(27)+"[1;33m"+"\nHas escogido \"%s\" \n" %files[int(numArchivo)-1])
 
 	return files[int(numArchivo)-1]
 
